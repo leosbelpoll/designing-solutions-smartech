@@ -34,6 +34,9 @@ class FormularioController extends AdminController
 
         $grid->column('name', __('Nombre'));
         $grid->column('description', __('Descripción'));
+        $grid->column('keep_submitting', 'Continuar en formulario')->display(function ($keepSubmitting) {
+            return $keepSubmitting['si'] ? "Si" : "No";
+        });
 
         $grid->model()->orderBy('id', 'asc');
 
@@ -69,14 +72,16 @@ class FormularioController extends AdminController
     {
         $form = new Form(new Formulario());
 
-        $form->text('name')
+        $form->text('name', 'Nombre')
             ->required()
             ->creationRules(['required', "unique:formularios"])
             ->updateRules(['required', "unique:formularios,name,{{id}}"]);
-        $form->text('description');
+        $form->text('description', 'Descripción');
 
         $fields = Field::all()->pluck('name', 'id')->toArray();
         $form->multipleSelect('fields', 'Campos')->options($fields);
+
+        $form->checkbox('keep_submitting', 'Continuar en formulario')->options(['si' => ' ']);
 
         $form->divider('Quiénes tienen acceso a este Formulario?');
 
