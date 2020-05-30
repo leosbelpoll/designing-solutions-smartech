@@ -79,6 +79,7 @@ class FieldController extends AdminController
         $show->field('type', __('Type'));
         $show->field('rules', __('Rules'));
         $show->field('position', __('Position'));
+        $show->field('guide_image', __('Imagen guia'))->image();
         $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));
 
@@ -113,6 +114,7 @@ class FieldController extends AdminController
         $form->multipleSelect('rules', __('Reglas'))
             ->options(['required' => 'Obligatorio']);
         $form->number('position', __('Posición'));
+        $form->image('guide_image', __('Imagen guia'));
 
         $formularios = Formulario::all()->pluck('name', 'id')->toArray();
         $form->multipleSelect('formularios', 'Formularios')->options($formularios);

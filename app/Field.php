@@ -9,7 +9,7 @@ class Field extends Model
     protected $table = 'fields';
 
     protected $fillable = [
-        'name', 'label', 'description', 'type', 'rules', 'position', 'selector', 'placeholder'
+        'name', 'label', 'description', 'type', 'rules', 'position', 'selector', 'placeholder', 'guide_image'
     ];
 
     public function formularios()
