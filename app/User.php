@@ -7,6 +7,10 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Administrator implements JWTSubject
 {
+    protected $fillable = [
+        'push_notification_token',
+    ];
+
     /**
      * The attributes that should be cast to native types.
      *

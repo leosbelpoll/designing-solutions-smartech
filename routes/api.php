@@ -73,4 +73,6 @@ Route::middleware('auth:api')->group(function ($router) {
     // Form Data
 
     Route::post('/save-values', 'ValueController@saveValues')->name('saveValues');
+
+    Route::post('/set-push-notification-token', 'UserController@setPushNotificationToken')->name('setPushNotificationToken');
 });

@@ -36,4 +36,6 @@ Route::group([
     $router->resource('values', ValueController::class)->only([
         'index', 'show'
     ]);
+    $router->get('/push-notifications', 'PushNotificationsController@pushNotifications')->name('pushNotifications');
+    $router->post('/push-notifications', 'PushNotificationsController@sendPushNotifications')->name('sendPushNotifications');
 });
