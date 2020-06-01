@@ -116,6 +116,10 @@ class FieldController extends AdminController
         $form->number('position', __('Posición'));
         $form->image('guide_image', __('Imagen guia'));
 
+        $fields = Field::all()->pluck('name', 'id')->toArray();
+        $form->select('field_id', __('Depende de campo'))->options($fields);
+        $form->text('field_value', __('Habilitar con el valor'));
+
         $formularios = Formulario::all()->pluck('name', 'id')->toArray();
         $form->multipleSelect('formularios', 'Formularios')->options($formularios);
 
