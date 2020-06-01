@@ -20,8 +20,8 @@ class HomeController extends Controller
             $projectsCounter = Project::count();
             $standardsCounter = Standard::where('standard_id', null)->count();
             $vehiclesCounter = Vehicle::count();
-            $formulariosCounter = Value::select('unique_group')->groupBy('unique_group')->count();
-            $formulariosTodayCounter = Value::whereDate('created_at', Carbon::today())->select('unique_group')->groupBy('unique_group')->count();
+            $formulariosCounter = Value::select('unique_group')->groupBy('unique_group')->get()->count();
+            $formulariosTodayCounter = Value::whereDate('created_at', Carbon::today())->select('unique_group')->groupBy('unique_group')->get()->count();
 
             $projectsWidget = view('dashboard.projects-widget', ['count' => $projectsCounter])->render();
             $standardsWidget = view('dashboard.standards-widget', ['count' => $standardsCounter])->render();
