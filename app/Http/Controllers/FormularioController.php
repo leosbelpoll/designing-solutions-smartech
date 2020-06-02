@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Formulario;
 use Illuminate\Http\Request;
 
-class FormController extends Controller
+class FormularioController extends Controller
 {
 
     public function getAll(){
@@ -13,7 +13,7 @@ class FormController extends Controller
     }
 
     public function get($id){
-        $form =  Formulario::find($id);
+        $form =  Formulario::with('fields')->with('permissions')->with('roles')->find($id);
         if (!$form) {
             return response()->json([
                 'error' => 'Not found'
