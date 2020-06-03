@@ -21,6 +21,8 @@ class StandardController extends Controller
         } else if ($idProject = $request->get('project')) {
             $standards =  Standard::whereHas('projects', function ($p) use ($idProject) {
                 $p->where('project_id', $idProject);
+            })->where('formulario_id', '!=', null)->orWhereHas('standards', function ($s) {
+                $s->where('standard_id', '!=', null);
             })->get();
         } else {
             $standards =  Standard::where('standard_id', null)->get();
