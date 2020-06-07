@@ -53,7 +53,7 @@ class ValueController extends AdminController
             }
         });
 
-        $grid->standard('Norma')->display(function ($standard) {
+        $grid->standard('Función')->display(function ($standard) {
             if ($standard) {
                 return "<span>{$standard['name']}</span>";
             }
@@ -92,7 +92,7 @@ class ValueController extends AdminController
                 $query->whereHas('standard', function ($query) {
                     $query->where('name', 'ilike', "%{$this->input}%");
                 });
-            }, 'Norma');
+            }, 'Función');
 
             $filter->where(function ($query) {
                 $query->whereHas('formulario', function ($query) {

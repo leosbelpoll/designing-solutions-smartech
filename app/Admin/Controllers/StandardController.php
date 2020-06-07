@@ -17,7 +17,7 @@ class StandardController extends AdminController
      *
      * @var string
      */
-    protected $title = 'Normas';
+    protected $title = 'Funciones';
 
     /**
      * Make a grid builder.
@@ -33,7 +33,7 @@ class StandardController extends AdminController
         $grid->column('name', __('Nombre'));
         $grid->column('description', __('Descripción'));
 
-        $grid->standard('Norma superior')->display(function ($standard) {
+        $grid->standard('Función superior')->display(function ($standard) {
             if ($standard) {
                 return "<span>{$standard['name']}</span>";
             }
@@ -87,7 +87,7 @@ class StandardController extends AdminController
         $form->text('type')->value('FORM')->readonly();
 
         $standards = Standard::all()->pluck('name', 'id')->toArray();
-        $form->select('standard_id', 'Norma superior')->options($standards);
+        $form->select('standard_id', 'Función superior')->options($standards);
 
         $projects = Project::all()->pluck('name', 'id')->toArray();
         $form->multipleSelect('projects', 'Proyectos')->options($projects);

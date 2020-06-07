@@ -55,7 +55,7 @@ class VehicleController extends AdminController
             }
         });
 
-        $grid->standard('Norma')->display(function ($standard) {
+        $grid->standard('Función')->display(function ($standard) {
             if ($standard) {
                 return "<span>{$standard['name']}</span>";
             }
@@ -122,7 +122,7 @@ class VehicleController extends AdminController
             return $item->name;
         });
 
-        $show->field('standard_id', 'Norma')->as(function ($id) {
+        $show->field('standard_id', 'Función')->as(function ($id) {
             $item = Standard::find($id);
             return $item->name;
         });
@@ -175,7 +175,7 @@ class VehicleController extends AdminController
         $form->select('project_id', 'Proyecto')->options($projects);
 
         $standards = Standard::all()->pluck('name', 'id')->toArray();
-        $form->select('standard_id', 'Norma')->options($standards);
+        $form->select('standard_id', 'Función')->options($standards);
 
         $noPlacas = Automovil::all()->pluck('name', 'id')->toArray();
         $form->select('automovil_id', 'Número de Placa')->options($noPlacas);
