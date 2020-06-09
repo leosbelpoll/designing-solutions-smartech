@@ -13,4 +13,5 @@ abstract class FieldTypeEnum
     const CHECK_OPTIONS = 'CHECK_OPTIONS';
     const CHECK_OPTIONS_SI_NO_OTRO = 'CHECK_OPTIONS_SI_NO_OTRO';
     const DATE = 'DATE';
+    const TIME = 'TIME';
 }

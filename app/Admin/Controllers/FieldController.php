@@ -30,6 +30,7 @@ class FieldController extends AdminController
         FieldTypeEnum::CHECK_OPTIONS_SI_NO_OTRO => 'Check tipo Si/No/Otro',
         FieldTypeEnum::CHECK_OPTIONS => 'Check tipo opciones',
         FieldTypeEnum::DATE => 'Fecha',
+        FieldTypeEnum::TIME => 'Hora',
     ];
 
     private $selectors = [SelectorEnum::AUTOMOVIL => 'Número de placa', SelectorEnum::BOMBA_ABASTECIMIENTO => 'Bomba de abastecimiento', SelectorEnum::SISTEMA_AMORTIGUACION => 'Sistema de amortiguación', SelectorEnum::ESTADO_MEDICION => 'Estado de medición', SelectorEnum::GENERADOR_GASOLINA => 'Generador de gasolina'];
@@ -112,7 +113,10 @@ class FieldController extends AdminController
             ->options($this->selectors);
 
         $form->multipleSelect('rules', __('Reglas'))
-            ->options(['required' => 'Obligatorio']);
+            ->options([
+                'required' => 'Obligatorio',
+                'date_today' => 'Fecha de hoy',
+            ]);
         $form->number('position', __('Posición'));
         $form->image('guide_image', __('Imagen guia'));
 
