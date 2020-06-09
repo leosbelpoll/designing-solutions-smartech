@@ -78,25 +78,25 @@ class ValueController extends AdminController
 
             $filter->where(function ($query) {
                 $query->whereHas('user', function ($query) {
-                    $query->where('name', 'ilike', "%{$this->input}%");
+                    $query->where('name', 'like', "%{$this->input}%");
                 });
             }, 'Usuario');
 
             $filter->where(function ($query) {
                 $query->whereHas('project', function ($query) {
-                    $query->where('name', 'ilike', "%{$this->input}%");
+                    $query->where('name', 'like', "%{$this->input}%");
                 });
             }, 'Proyecto');
 
             $filter->where(function ($query) {
                 $query->whereHas('standard', function ($query) {
-                    $query->where('name', 'ilike', "%{$this->input}%");
+                    $query->where('name', 'like', "%{$this->input}%");
                 });
             }, 'Función');
 
             $filter->where(function ($query) {
                 $query->whereHas('formulario', function ($query) {
-                    $query->where('name', 'ilike', "%{$this->input}%");
+                    $query->where('name', 'like', "%{$this->input}%");
                 });
             }, 'Formulario');
         });
