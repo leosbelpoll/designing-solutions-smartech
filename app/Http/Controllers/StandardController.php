@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Formulario;
+use App\Project;
 use App\Standard;
 use App\User;
 use Exception;
@@ -39,6 +40,13 @@ class StandardController extends Controller
             } else {
                 array_push($standardsWithPermissions, $standards[$i]);
             }
+        }
+
+        if ($idProject = $request->get('project')) {
+            return response()->json([
+                'project' => Project::find($idProject),
+                'standards' => $standardsWithPermissions
+            ], 200);
         }
 
         return $standardsWithPermissions;
@@ -86,6 +94,7 @@ class StandardController extends Controller
             'id' => $standard->id,
             'name' => $standard->name,
             'description' => $standard->description,
+            'next_screen_title' => $standard->next_screen_title,
             'type' => $standard->type,
             'standards' => $standardsWithPermissions,
             'formulario' => $standard->formulario
