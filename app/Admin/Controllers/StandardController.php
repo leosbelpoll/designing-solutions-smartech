@@ -45,6 +45,8 @@ class StandardController extends AdminController
             }
         });
 
+        $grid->column('next_screen_title', __('Título de la próxima pantalla'));
+
         $grid->model()->orderBy('id', 'asc');
 
         return $grid;
@@ -62,6 +64,7 @@ class StandardController extends AdminController
 
         $show->field('name', __('Título'));
         $show->field('description', __('Descripción'));
+        $show->field('next_screen_title', __('Título de la próxima pantalla'));
         $show->field('created_at', __('Creado'));
         $show->field('updated_at', __('Modificado'));
 
@@ -94,6 +97,8 @@ class StandardController extends AdminController
 
         $forms = Formulario::all()->pluck('name', 'id')->toArray();
         $form->select('formulario_id', 'Formulario')->options($forms);
+
+        $form->text('next_screen_title', __('Título de la próxima pantalla'));
 
         return $form;
     }

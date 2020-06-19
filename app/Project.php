@@ -9,7 +9,7 @@ class Project extends Model
     protected $table = 'projects';
 
     protected $fillable = [
-        'name', 'description', 'state',
+        'name', 'description', 'state', 'next_screen_title',
     ];
 
     public function standards()

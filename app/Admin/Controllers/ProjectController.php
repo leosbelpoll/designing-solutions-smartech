@@ -36,6 +36,8 @@ class ProjectController extends AdminController
 
         $grid->column('description', 'Descripción');
 
+        $grid->column('next_screen_title', __('Título de la próxima pantalla'));
+
         $grid->filter(function ($filter) {
             $filter->disableIdFilter();
             $filter->like('name', 'name');
@@ -59,6 +61,7 @@ class ProjectController extends AdminController
         $show->field('name', __('Título'));
         $show->field('state', __('Estado'));
         $show->field('description', __('Descripción'));
+        $show->field('next_screen_title', __('Título de la próxima pantalla'));
         $show->field('created_at', __('Creado'));
         $show->field('updated_at', __('Modificado'));
 
@@ -86,7 +89,7 @@ class ProjectController extends AdminController
         $form->textarea('description', 'Descripción');
         $standards = Standard::where('standard_id', null)->pluck('name', 'id')->toArray();
         $form->multipleSelect('standards', 'Funciones')->options($standards);
-
+        $form->text('next_screen_title', 'Título de la próxima pantalla');
 
         return $form;
     }
