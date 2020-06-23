@@ -29,6 +29,7 @@ class FieldController extends AdminController
         FieldTypeEnum::SELECTOR_OPTIONS => 'Selector tipo opciones',
         FieldTypeEnum::CHECK_OPTIONS_SI_NO_OTRO => 'Check tipo Si/No/Otro',
         FieldTypeEnum::CHECK_OPTIONS => 'Check tipo opciones',
+        FieldTypeEnum::RADIO_OPTIONS => 'Radios buttons',
         FieldTypeEnum::DATE => 'Fecha',
         FieldTypeEnum::TIME => 'Hora',
     ];

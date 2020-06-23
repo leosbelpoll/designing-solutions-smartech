@@ -11,6 +11,7 @@ abstract class FieldTypeEnum
     const SELECTOR_OPTIONS = 'SELECTOR_OPTIONS';
     const IMAGE = 'IMAGE';
     const CHECK_OPTIONS = 'CHECK_OPTIONS';
+    const RADIO_OPTIONS = 'RADIO_OPTIONS';
     const CHECK_OPTIONS_SI_NO_OTRO = 'CHECK_OPTIONS_SI_NO_OTRO';
     const DATE = 'DATE';
     const TIME = 'TIME';
