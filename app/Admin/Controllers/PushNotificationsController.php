@@ -24,12 +24,13 @@ class PushNotificationsController extends Controller
     public function sendPushNotifications(Request $request)
     {
         $tokens = User::where('push_notification_token', '!=', null)->select('push_notification_token')->groupBy('push_notification_token')->pluck('push_notification_token');
-        
+
         Http::post('https://exp.host/--/api/v2/push/send', [
             'to' => $tokens,
             'sound' => 'default',
             'title' => $request->input('title'),
             'body' =>  $request->input('message'),
+            'channelId' => 'default',
             '_displayInForeground' => false,
         ]);
 
