@@ -6,6 +6,7 @@ use App\Field;
 use App\FieldTypeEnum;
 use App\Formulario;
 use App\SelectorEnum;
+use App\WeekDaysEnum;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -34,6 +35,16 @@ class FieldController extends AdminController
         FieldTypeEnum::TIME => 'Hora',
     ];
 
+    private $days = [
+        WeekDaysEnum::MONDAY => 'Lunes',
+        WeekDaysEnum::TUESDAY => 'Martes',
+        WeekDaysEnum::WEDNESDAY => 'Miércoles',
+        WeekDaysEnum::THURSDAY => 'Jueves',
+        WeekDaysEnum::FRIDAY => 'Viernes',
+        WeekDaysEnum::SATURDAY => 'Sábado',
+        WeekDaysEnum::SUNDAY => 'Domingo',
+    ];
+
     private $selectors = [SelectorEnum::AUTOMOVIL => 'Número de placa', SelectorEnum::BOMBA_ABASTECIMIENTO => 'Bomba de abastecimiento', SelectorEnum::SISTEMA_AMORTIGUACION => 'Sistema de amortiguación', SelectorEnum::ESTADO_MEDICION => 'Estado de medición', SelectorEnum::GENERADOR_GASOLINA => 'Generador de gasolina'];
 
     /**
@@ -52,6 +63,7 @@ class FieldController extends AdminController
         $grid->column('placeholder', __('Placeholder'));
         $grid->column('description', __('Descripción'));
         $grid->column('type', __('Tipo'));
+        $grid->column('visible_on_days', __('Visible el día'));
         $grid->column('options', __('Opciones'));
         $grid->column('selector', __('Selector'));
         $grid->column('rules', 'Reglas')->display(function ($rules) {
@@ -79,6 +91,7 @@ class FieldController extends AdminController
         $show->field('name', __('Name'));
         $show->field('description', __('Description'));
         $show->field('type', __('Type'));
+        $show->field('visible_on_days', __('Visible el día'));
         $show->field('rules', __('Rules'));
         $show->field('position', __('Position'));
         $show->field('guide_image', __('Imagen guia'))->image();
@@ -107,6 +120,9 @@ class FieldController extends AdminController
         $form->select('type', __('Tipo'))
             ->options($this->types)
             ->required();
+
+        $form->select('visible_on_days', __('Visible el día'))
+            ->options($this->days);
 
         $form->text('options', __('Opciones separadas por: "|"'));
 
