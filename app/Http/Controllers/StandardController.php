@@ -6,6 +6,7 @@ use App\Formulario;
 use App\Project;
 use App\Standard;
 use App\User;
+use App\WeekDaysEnum;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -80,7 +81,10 @@ class StandardController extends Controller
             $standard->standards = [];
         }
 
-        $standard->formulario = Formulario::with('fields')->with('permissions')->with('roles')->find($standard->formulario_id);
+        $weekDay = new WeekDaysEnum();
+        $standard->formulario = Formulario::with(['fields' => function ($query) use ($weekDay) {
+            $query->where('visible_on_days', null)->orWhere('visible_on_days', '=', $weekDay->getWeekDay());
+        }])->with('permissions')->with('roles')->find($standard->formulario_id);
 
         if ($standard->formulario) {
             if (!$this->hasUserPermissionToFormulario($user, $standard->formulario)) {
