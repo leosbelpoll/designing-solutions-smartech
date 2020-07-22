@@ -39,7 +39,7 @@ class ValueController extends AdminController
 
         $grid->disableExport();
 
-        $grid->model()->select('user_id', 'project_id', 'standard_id', 'formulario_id', 'unique_group')->groupBy('user_id', 'project_id', 'standard_id', 'formulario_id', 'unique_group');
+        $grid->model()->select('user_id', 'project_id', 'standard_id', 'formulario_id', 'unique_group', 'created_at')->groupBy('user_id', 'project_id', 'standard_id', 'formulario_id', 'unique_group', 'created_at')->orderBy('created_at', 'desc');
 
         $grid->user('Usuario')->display(function ($user) {
             if ($user) {
